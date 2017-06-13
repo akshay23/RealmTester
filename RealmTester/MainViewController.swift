@@ -15,8 +15,9 @@ class MainViewController: UIViewController {
 
     let songVC = SongViewController()
     let realm = RealmManager.shared.userRealm
-    let songsData = RealmManager.shared.userRealm?.objects(Song.self)
-    var notificationToken: NotificationToken? = nil
+    let searchController = UISearchController(searchResultsController: nil)
+    var songsData = RealmManager.shared.userRealm?.objects(Song.self)
+    var notificationToken: NotificationToken!
     
     @IBOutlet var addSongButton: FUIButton!
     @IBOutlet var songsTable: UITableView!
@@ -24,6 +25,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapRecognizer)
+
         navigationItem.title = "Welcome to RealmTester"
         addSongButton.buttonColor = UIColor.turquoise()
         addSongButton.shadowColor = UIColor.greenSea()
@@ -32,9 +36,16 @@ class MainViewController: UIViewController {
         addSongButton.setTitleColor(UIColor.clouds(), for: .normal)
         addSongButton.setTitleColor(UIColor.clouds(), for: .highlighted)
         
-        songsTable.delegate = self
+        songsTable.backgroundColor = UIColor.clear
         songsTable.dataSource = self
         songsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        songsTable.tableFooterView = UIView()
+        
+        searchController.searchResultsUpdater = self
+        searchController.view.backgroundColor = UIColor.clear
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        songsTable.tableHeaderView = searchController.searchBar
         
         // Observe Results Notifications
         notificationToken = songsData?.addNotificationBlock(songsTable.updateTable)
@@ -44,21 +55,28 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func hideKeyboard() {
+        searchController.isActive = false
+    }
+    
     deinit {
         notificationToken?.stop()
     }
 }
 
 private extension MainViewController {
+    func filterContent(forSearchText searchText: String) {
+        let predicate = NSPredicate(format: "title CONTAINS %@ OR artist CONTAINS %@", searchText, searchText)
+        songsData = realm?.objects(Song.self).filter(predicate)
+        songsTable.reloadData()
+    }
 }
 
 extension MainViewController {
     @IBAction func addSont(_ sender: Any) {
+        hideKeyboard()
         navigationController?.pushViewController(songVC, animated: true)
     }
-}
-
-extension MainViewController: UITableViewDelegate {
 }
 
 extension MainViewController: UITableViewDataSource {
@@ -71,11 +89,12 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         if let songs = songsData {
             let s = songs[indexPath.row]
             cell.textLabel?.text = s.title
             cell.detailTextLabel?.text = s.artist
+            cell.accessoryType = .disclosureIndicator
         }
         return cell
     }
@@ -84,18 +103,24 @@ extension MainViewController: UITableViewDataSource {
         return true
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            realm?.beginWrite()
-//            do {
-//                try realm?.commitWrite(withoutNotifying: [self.notificationToken!])
-//            } catch let error as NSError {
-//                log.error(error)
-//            }
-//            
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete, let objectToDelete = songsData?[indexPath.row] {
+            do {
+                realm?.beginWrite()
+                realm?.delete(objectToDelete)
+                try realm?.commitWrite(withoutNotifying: [notificationToken])
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            } catch let error {
+                log.error(error)
+            }
+        }
+    }
+}
+
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContent(forSearchText: searchController.searchBar.text!)
+    }
 }
 
 extension UITableView {
