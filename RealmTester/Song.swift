@@ -10,10 +10,12 @@ import Foundation
 import RealmSwift
 
 class MusicService: Object {
+    dynamic var id = ""
     dynamic var name = ""
 }
 
 class Genre: Object {
+    dynamic var id = ""
     dynamic var name = ""
 }
 
@@ -22,7 +24,8 @@ class Song: Object {
     dynamic var artist = ""
     dynamic var album = ""
     dynamic var released: NSDate? = nil
-    dynamic var genre: Genre?
-    dynamic var serviceReleasedTo: MusicService?
+    dynamic var genreID: String? = nil
+    dynamic var musicServiceID: String? = nil
+    dynamic var topic: AnyTopic?
     let duration = RealmOptional<Int>()
 }

@@ -48,7 +48,11 @@ private extension RealmManager {
         // Initialize app Realm schema
         let appConfig = Realm.Configuration(
             fileURL: URL(fileURLWithPath: RLMRealmPathForFile("app.realm"), isDirectory: false),
-            schemaVersion: 0
+            schemaVersion: 0,
+            migrationBlock: { migration, oldSchemaVersion in
+                //if (oldSchemaVersion < 1) { }
+            },
+            objectTypes: [Genre.self, MusicService.self]
         )
         
         // Init app realm
@@ -63,16 +67,12 @@ private extension RealmManager {
         // Initialize user Realm schema
         let userConfig = Realm.Configuration(
             fileURL: URL(fileURLWithPath: RLMRealmPathForFile("user.realm"), isDirectory: false),
-            
-            // Set the new schema version. This must be greater than the previously used
-            // version (if you've never set a schema version before, the version is 0).
             schemaVersion: 0,
-            
-            // Set the block which will be called automatically when opening a Realm with
-            // a schema version lower than the one set above
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 1) { }
-        })
+                //if (oldSchemaVersion < 1) { }
+            },
+            objectTypes: [Song.self, Topic.self, CarTopic.self, FoodTopic.self, MovieTopic.self, AnyTopic.self]
+        )
         
         // Init user realm
         do {
@@ -99,6 +99,7 @@ private extension RealmManager {
                     let defaultGenres = ["Hip-Hop", "Rock", "Classical", "Pop", "Electronic", "Jazz"]
                     for genre in defaultGenres {
                         let newGenre = Genre()
+                        newGenre.id = UUID().uuidString
                         newGenre.name = genre
                         r.add(newGenre)
                     }
@@ -127,6 +128,7 @@ private extension RealmManager {
                     let defaultServices = ["Spotify", "🍏 Music", "Sound⛅️", "Tidal", "Amazon Prime 🎶"]
                     for service in defaultServices {
                         let newService = MusicService()
+                        newService.id = UUID().uuidString
                         newService.name = service
                         r.add(newService)
                     }
