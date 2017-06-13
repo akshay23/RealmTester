@@ -20,9 +20,9 @@ class SongViewController: UIViewController {
     @IBOutlet var musicServiceField: FUITextField!
     @IBOutlet var addButton: FUIButton!
 
-    let realm = try! Realm()
     var arryOfGenres = [String]()
     var arryOfServices = [String]()
+    let realmManager = RealmManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,15 +38,17 @@ class SongViewController: UIViewController {
         addButton.setTitleColor(UIColor.clouds(), for: .highlighted)
         
         // Load genres
-        let genres = realm.objects(Genre.self)
-        for g in genres {
-            arryOfGenres.append(g.name)
+        if let genres = realmManager.appRealm?.objects(Genre.self) {
+            for g in genres {
+                arryOfGenres.append(g.name)
+            }
         }
         
         // Load music services
-        let services = realm.objects(MusicService.self)
-        for s in services {
-            arryOfServices.append(s.name)
+        if let services = realmManager.appRealm?.objects(MusicService.self) {
+            for s in services {
+                arryOfServices.append(s.name)
+            }
         }
         
         // Config pickers

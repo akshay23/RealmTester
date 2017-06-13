@@ -8,5 +8,6 @@ target 'RealmTester' do
   pod 'RealmSwift'
   pod 'FlatUIKit'
   pod 'DropDown'
+  pod 'SwiftyBeaver'
 
 end

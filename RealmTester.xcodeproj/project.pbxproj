@@ -10,11 +10,13 @@
 		196536E81EEF321F00A58044 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196536E71EEF321F00A58044 /* Song.swift */; };
 		196536EC1EEF366200A58044 /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196536EA1EEF366200A58044 /* SongViewController.swift */; };
 		196536ED1EEF366200A58044 /* SongViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 196536EB1EEF366200A58044 /* SongViewController.xib */; };
+		196536EF1EEF924800A58044 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196536EE1EEF924800A58044 /* RealmManager.swift */; };
 		19A32D811EEF30F30042E922 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A32D801EEF30F30042E922 /* AppDelegate.swift */; };
 		19A32D881EEF30F30042E922 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19A32D871EEF30F30042E922 /* Assets.xcassets */; };
 		19A32D8B1EEF30F30042E922 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19A32D891EEF30F30042E922 /* LaunchScreen.storyboard */; };
 		19A32D951EEF31140042E922 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A32D931EEF31140042E922 /* MainViewController.swift */; };
 		19A32D961EEF31140042E922 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19A32D941EEF31140042E922 /* MainViewController.xib */; };
+		19ED2CBD1EF055C800063AAF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED2CBC1EF055C800063AAF /* Topic.swift */; };
 		359819316CFFF517039E97D1 /* Pods_RealmTester.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B866436D3752C22805091BB8 /* Pods_RealmTester.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,7 @@
 		196536E91EEF348500A58044 /* RealmTester-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RealmTester-Bridging-Header.h"; sourceTree = "<group>"; };
 		196536EA1EEF366200A58044 /* SongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		196536EB1EEF366200A58044 /* SongViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongViewController.xib; sourceTree = "<group>"; };
+		196536EE1EEF924800A58044 /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		19A32D7D1EEF30F30042E922 /* RealmTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19A32D801EEF30F30042E922 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19A32D871EEF30F30042E922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -31,6 +34,7 @@
 		19A32D921EEF31020042E922 /* RealmTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RealmTester.entitlements; sourceTree = "<group>"; };
 		19A32D931EEF31140042E922 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		19A32D941EEF31140042E922 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		19ED2CBC1EF055C800063AAF /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		58BC8835E377C109CF66550C /* Pods-RealmTester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmTester.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmTester/Pods-RealmTester.debug.xcconfig"; sourceTree = "<group>"; };
 		B866436D3752C22805091BB8 /* Pods_RealmTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9011EC54CD5E58C02D203D /* Pods-RealmTester.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmTester.release.xcconfig"; path = "Pods/Target Support Files/Pods-RealmTester/Pods-RealmTester.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,6 +52,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		194538BC1EF0404D0085EE92 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				196536EE1EEF924800A58044 /* RealmManager.swift */,
+				196536E71EEF321F00A58044 /* Song.swift */,
+				19ED2CBC1EF055C800063AAF /* Topic.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		194538BD1EF0406A0085EE92 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				19A32D931EEF31140042E922 /* MainViewController.swift */,
+				19A32D941EEF31140042E922 /* MainViewController.xib */,
+				196536EA1EEF366200A58044 /* SongViewController.swift */,
+				196536EB1EEF366200A58044 /* SongViewController.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		194538BE1EF0408B0085EE92 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				19A32D871EEF30F30042E922 /* Assets.xcassets */,
+				19A32D921EEF31020042E922 /* RealmTester.entitlements */,
+				19A32D891EEF30F30042E922 /* LaunchScreen.storyboard */,
+				19A32D8C1EEF30F30042E922 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		194538BF1EF040AF0085EE92 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				19A32D801EEF30F30042E922 /* AppDelegate.swift */,
+				196536E91EEF348500A58044 /* RealmTester-Bridging-Header.h */,
+			);
+			name = Startup;
+			sourceTree = "<group>";
+		};
 		19A32D741EEF30F30042E922 = {
 			isa = PBXGroup;
 			children = (
@@ -69,17 +114,10 @@
 		19A32D7F1EEF30F30042E922 /* RealmTester */ = {
 			isa = PBXGroup;
 			children = (
-				19A32D921EEF31020042E922 /* RealmTester.entitlements */,
-				19A32D801EEF30F30042E922 /* AppDelegate.swift */,
-				19A32D871EEF30F30042E922 /* Assets.xcassets */,
-				19A32D891EEF30F30042E922 /* LaunchScreen.storyboard */,
-				19A32D8C1EEF30F30042E922 /* Info.plist */,
-				19A32D931EEF31140042E922 /* MainViewController.swift */,
-				19A32D941EEF31140042E922 /* MainViewController.xib */,
-				196536E71EEF321F00A58044 /* Song.swift */,
-				196536E91EEF348500A58044 /* RealmTester-Bridging-Header.h */,
-				196536EA1EEF366200A58044 /* SongViewController.swift */,
-				196536EB1EEF366200A58044 /* SongViewController.xib */,
+				194538BF1EF040AF0085EE92 /* Startup */,
+				194538BE1EF0408B0085EE92 /* Resources */,
+				194538BD1EF0406A0085EE92 /* Views */,
+				194538BC1EF0404D0085EE92 /* Models */,
 			);
 			path = RealmTester;
 			sourceTree = "<group>";
@@ -140,7 +178,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -232,7 +270,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				196536E81EEF321F00A58044 /* Song.swift in Sources */,
+				19ED2CBD1EF055C800063AAF /* Topic.swift in Sources */,
 				196536EC1EEF366200A58044 /* SongViewController.swift in Sources */,
+				196536EF1EEF924800A58044 /* RealmManager.swift in Sources */,
 				19A32D811EEF30F30042E922 /* AppDelegate.swift in Sources */,
 				19A32D951EEF31140042E922 /* MainViewController.swift in Sources */,
 			);
@@ -350,7 +390,6 @@
 			baseConfigurationReference = 58BC8835E377C109CF66550C /* Pods-RealmTester.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = RealmTester/RealmTester.entitlements;
 				DEVELOPMENT_TEAM = VRYW4TD62Q;
 				INFOPLIST_FILE = RealmTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -365,7 +404,6 @@
 			baseConfigurationReference = FC9011EC54CD5E58C02D203D /* Pods-RealmTester.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = RealmTester/RealmTester.entitlements;
 				DEVELOPMENT_TEAM = VRYW4TD62Q;
 				INFOPLIST_FILE = RealmTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

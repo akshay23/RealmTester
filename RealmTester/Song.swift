@@ -21,8 +21,8 @@ class Song: Object {
     dynamic var title = ""
     dynamic var artist = ""
     dynamic var album = ""
-    dynamic var duration = 0.0
-    dynamic var released = NSDate()
-    dynamic var genre: Genre!
-    dynamic var serviceReleasedTo: MusicService!
+    dynamic var released: NSDate? = nil
+    dynamic var genre: Genre?
+    dynamic var serviceReleasedTo: MusicService?
+    let duration = RealmOptional<Int>()
 }

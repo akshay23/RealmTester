@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import RealmSwift
 import FlatUIKit
+import RealmSwift
 
 class MainViewController: UIViewController {
 
     let songVC = SongViewController()
-    let realm = try! Realm()
     
     @IBOutlet var addSongButton: FUIButton!
 
@@ -26,17 +25,6 @@ class MainViewController: UIViewController {
         addSongButton.cornerRadius = 5.0
         addSongButton.setTitleColor(UIColor.clouds(), for: .normal)
         addSongButton.setTitleColor(UIColor.clouds(), for: .highlighted)
-        
-        // Print out location of Realm db
-        if let url = Realm.Configuration.defaultConfiguration.fileURL {
-            print(url)
-        }
-        
-        // Populate genres
-        populateGenres()
-        
-        // Populate music services
-        populateMusicServices()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,51 +33,6 @@ class MainViewController: UIViewController {
 }
 
 private extension MainViewController {
-    func populateGenres() {
-        if realm.objects(Genre.self).count != 0 {
-            do {
-                try realm.write {
-                    realm.delete(realm.objects(Genre.self))
-                }
-            } catch {}
-        }
-
-        do {
-            try realm.write {
-                let defaultGenres = ["Hip-Hop", "Rock", "Classical", "Pop", "Electronic", "Jazz"]
-                for genre in defaultGenres {
-                    let newGenre = Genre()
-                    newGenre.name = genre
-                    self.realm.add(newGenre)
-                }
-            }
-        } catch {
-            print("Coult not save to Realm")
-        }
-    }
-    
-    func populateMusicServices() {
-        if realm.objects(MusicService.self).count != 0 {
-            do {
-                try realm.write {
-                    realm.delete(realm.objects(MusicService.self))
-                }
-            } catch {}
-        }
-        
-        do {
-            try realm.write {
-                let defaultServices = ["Spotify", "🍏 Music", "Sound⛅️", "Tidal", "Amazon Prime 🎶"]
-                for service in defaultServices {
-                    let newService = MusicService()
-                    newService.name = service
-                    self.realm.add(newService)
-                }
-            }
-        } catch {
-            print("Coult not save to Realm")
-        }
-    }
 
 }
 
