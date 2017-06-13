@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="RealmTester" customModuleProvider="target">
             <connections>
                 <outlet property="addSongButton" destination="vDZ-6R-i5i" id="xLD-cD-Nhj"/>
+                <outlet property="songsTable" destination="ZWx-wS-4xm" id="3iG-5E-2sr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDZ-6R-i5i" customClass="FUIButton">
-                    <rect key="frame" x="127" y="100" width="120" height="40"/>
+                    <rect key="frame" x="127" y="80" width="120" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="f9V-sA-zjb"/>
                         <constraint firstAttribute="width" constant="120" id="q9H-Me-Wd4"/>
@@ -34,11 +35,20 @@
                         <action selector="addSont:" destination="-1" eventType="touchUpInside" id="4ek-1S-VEk"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZWx-wS-4xm">
+                    <rect key="frame" x="10" y="150" width="355" height="467"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vDZ-6R-i5i" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Exv-qa-03Y"/>
-                <constraint firstItem="vDZ-6R-i5i" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="fB7-1D-Vjr"/>
+                <constraint firstItem="ZWx-wS-4xm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bsh-pg-PPE"/>
+                <constraint firstItem="vDZ-6R-i5i" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="fB7-1D-Vjr"/>
+                <constraint firstItem="ZWx-wS-4xm" firstAttribute="top" secondItem="vDZ-6R-i5i" secondAttribute="bottom" constant="30" id="lMU-cB-FUA"/>
+                <constraint firstAttribute="trailing" secondItem="ZWx-wS-4xm" secondAttribute="trailing" constant="10" id="mph-YM-uGK"/>
+                <constraint firstItem="ZWx-wS-4xm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="t2R-xt-YIj"/>
+                <constraint firstAttribute="bottom" secondItem="ZWx-wS-4xm" secondAttribute="bottom" constant="50" id="zzr-Ui-2Zq"/>
             </constraints>
         </view>
     </objects>

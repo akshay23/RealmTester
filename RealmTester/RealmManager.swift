@@ -59,7 +59,7 @@ private extension RealmManager {
         do {
             try appRealm = Realm(configuration: appConfig)
         } catch let error as NSError {
-            log.error(error.description)
+            log.error(error)
         }
     }
 
@@ -78,7 +78,7 @@ private extension RealmManager {
         do {
             try userRealm = Realm(configuration: userConfig)
         } catch let error as NSError {
-            log.error(error.description)
+            log.error(error)
         }
     }
     
@@ -90,7 +90,7 @@ private extension RealmManager {
                         r.delete(r.objects(Genre.self))
                     }
                 } catch let error as NSError {
-                    log.error("Could not delete genres from App Realm because \(error.description)")
+                    log.error(error)
                 }
             }
             
@@ -106,7 +106,7 @@ private extension RealmManager {
                     log.info("Genres added to App Realm")
                 }
             } catch let error as NSError {
-                log.error("Could not save genres to App Realm because \(error.description)")
+                log.error(error)
             }
         }
     }
@@ -119,7 +119,7 @@ private extension RealmManager {
                         r.delete(r.objects(MusicService.self))
                     }
                 } catch let error as NSError {
-                    log.error("Could not delete services from App Realm because \(error.description)")
+                    log.error(error)
                 }
             }
             
@@ -135,7 +135,7 @@ private extension RealmManager {
                     log.info("Services added to App Realm")
                 }
             } catch let error as NSError {
-                log.error("Could not save services to App Realm because \(error.description)")
+                log.error(error)
             }
         }
     }

@@ -12,11 +12,19 @@ import RealmSwift
 class MusicService: Object {
     dynamic var id = ""
     dynamic var name = ""
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 class Genre: Object {
     dynamic var id = ""
     dynamic var name = ""
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 class Song: Object {
