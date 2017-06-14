@@ -17,6 +17,8 @@
 		19A32D951EEF31140042E922 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A32D931EEF31140042E922 /* MainViewController.swift */; };
 		19A32D961EEF31140042E922 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19A32D941EEF31140042E922 /* MainViewController.xib */; };
 		19ED2CBD1EF055C800063AAF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED2CBC1EF055C800063AAF /* Topic.swift */; };
+		19ED2CC01EF1867200063AAF /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED2CBE1EF1867200063AAF /* DetailsViewController.swift */; };
+		19ED2CC11EF1867200063AAF /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19ED2CBF1EF1867200063AAF /* DetailsViewController.xib */; };
 		359819316CFFF517039E97D1 /* Pods_RealmTester.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B866436D3752C22805091BB8 /* Pods_RealmTester.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		19A32D931EEF31140042E922 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		19A32D941EEF31140042E922 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		19ED2CBC1EF055C800063AAF /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		19ED2CBE1EF1867200063AAF /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		19ED2CBF1EF1867200063AAF /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		58BC8835E377C109CF66550C /* Pods-RealmTester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmTester.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmTester/Pods-RealmTester.debug.xcconfig"; sourceTree = "<group>"; };
 		B866436D3752C22805091BB8 /* Pods_RealmTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9011EC54CD5E58C02D203D /* Pods-RealmTester.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmTester.release.xcconfig"; path = "Pods/Target Support Files/Pods-RealmTester/Pods-RealmTester.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				19A32D941EEF31140042E922 /* MainViewController.xib */,
 				196536EA1EEF366200A58044 /* SongViewController.swift */,
 				196536EB1EEF366200A58044 /* SongViewController.xib */,
+				19ED2CBE1EF1867200063AAF /* DetailsViewController.swift */,
+				19ED2CBF1EF1867200063AAF /* DetailsViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -209,6 +215,7 @@
 			files = (
 				19A32D8B1EEF30F30042E922 /* LaunchScreen.storyboard in Resources */,
 				196536ED1EEF366200A58044 /* SongViewController.xib in Resources */,
+				19ED2CC11EF1867200063AAF /* DetailsViewController.xib in Resources */,
 				19A32D961EEF31140042E922 /* MainViewController.xib in Resources */,
 				19A32D881EEF30F30042E922 /* Assets.xcassets in Resources */,
 			);
@@ -273,6 +280,7 @@
 				19ED2CBD1EF055C800063AAF /* Topic.swift in Sources */,
 				196536EC1EEF366200A58044 /* SongViewController.swift in Sources */,
 				196536EF1EEF924800A58044 /* RealmManager.swift in Sources */,
+				19ED2CC01EF1867200063AAF /* DetailsViewController.swift in Sources */,
 				19A32D811EEF30F30042E922 /* AppDelegate.swift in Sources */,
 				19A32D951EEF31140042E922 /* MainViewController.swift in Sources */,
 			);

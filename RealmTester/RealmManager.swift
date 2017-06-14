@@ -26,8 +26,8 @@ final class RealmManager {
     private init() {
         initializeAppRealm()
         initializeUserRealm()
-        populateGenres()
-        populateMusicServices()
+        //populateGenres()
+        //populateMusicServices()
     }
     
     func printRealmPaths() {

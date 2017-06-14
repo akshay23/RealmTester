@@ -1,26 +1,23 @@
 PODS:
-  - DropDown (2)
   - FlatUIKit (1.6.2)
-  - Realm (2.7.0):
-    - Realm/Headers (= 2.7.0)
-  - Realm/Headers (2.7.0)
-  - RealmSwift (2.7.0):
-    - Realm (= 2.7.0)
+  - Realm (2.8.0):
+    - Realm/Headers (= 2.8.0)
+  - Realm/Headers (2.8.0)
+  - RealmSwift (2.8.0):
+    - Realm (= 2.8.0)
   - SwiftyBeaver (1.2.2)
 
 DEPENDENCIES:
-  - DropDown
   - FlatUIKit
-  - RealmSwift
+  - RealmSwift (= 2.8.0)
   - SwiftyBeaver
 
 SPEC CHECKSUMS:
-  DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
-  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
-  RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
+  Realm: 929243ad2b618b3232e70658bedc61110e7563f1
+  RealmSwift: 5b7079b891f2833d1849294161ba3e092bbda3f6
   SwiftyBeaver: 90a39e3dc5136b7285f2e4c870b107e3933b8b84
 
-PODFILE CHECKSUM: 023b390f62528cb019648073a9065468bfd92c59
+PODFILE CHECKSUM: fd72b109fc11404155ed381ff10258449a782c5a
 
 COCOAPODS: 1.2.1

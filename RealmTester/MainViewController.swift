@@ -14,6 +14,7 @@ import RealmSwift
 class MainViewController: UIViewController {
 
     let songVC = SongViewController()
+    let detailsVC = DetailsViewController()
     let realm = RealmManager.shared.userRealm
     let searchController = UISearchController(searchResultsController: nil)
     var songsData = RealmManager.shared.userRealm?.objects(Song.self)
@@ -40,6 +41,7 @@ class MainViewController: UIViewController {
         
         songsTable.backgroundColor = UIColor.clear
         songsTable.dataSource = self
+        songsTable.delegate = self
         songsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         songsTable.tableFooterView = UIView()
         
@@ -160,6 +162,14 @@ extension MainViewController: UITableViewDataSource {
                 log.error(error)
             }
         }
+    }
+}
+
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        detailsVC.song = songsData?[indexPath.row]
+        navigationController?.pushViewController(detailsVC, animated: true)
     }
 }
 
