@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var songsData = RealmManager.shared.userRealm?.objects(Song.self)
     var notificationToken: NotificationToken!
+    var timer: DispatchSourceTimer?
     
     @IBOutlet var addSongButton: FUIButton!
     @IBOutlet var songsTable: UITableView!
@@ -25,6 +26,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startTimer()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapRecognizer)
 
@@ -61,6 +63,7 @@ class MainViewController: UIViewController {
     
     deinit {
         notificationToken?.stop()
+        stopTimer()
     }
 }
 
@@ -69,6 +72,49 @@ private extension MainViewController {
         let predicate = NSPredicate(format: "title CONTAINS %@ OR artist CONTAINS %@", searchText, searchText)
         songsData = realm?.objects(Song.self).filter(predicate)
         songsTable.reloadData()
+    }
+    
+    func startTimer() {
+        let queue = DispatchQueue(label: "com.actionman.RealmTester.timer")
+        timer = DispatchSource.makeTimerSource(queue: queue)
+        timer!.scheduleRepeating(deadline: .now() + 30, interval: .seconds(30))
+        timer!.setEventHandler {
+            do {
+                // Init Realms in current thread
+                let userRealm = try Realm(configuration: RealmManager.shared.userConfig)
+                let appRealm = try Realm(configuration: RealmManager.shared.appConfig)
+
+                // Start a new transaction
+                userRealm.beginWrite()
+
+                let newSong = Song()
+                newSong.album = "The Score"
+                newSong.artist = "Fugees"
+                newSong.title = "Fu-Gee-La"
+                newSong.genreID = appRealm.objects(Genre.self).filter(NSPredicate(format: "name = %@", "Hip-Hop"))[0].id
+                newSong.musicServiceID = appRealm.objects(MusicService.self).filter(NSPredicate(format: "name = %@", "Spotify"))[0].id
+                userRealm.create(Song.self, value: newSong, update: false)
+                
+                let newSong2 = Song()
+                newSong2.album = "Uncut Dope"
+                newSong2.artist = "Geto Boys"
+                newSong2.title = "Damn It Feels Good To Be A Gangsta"
+                newSong2.genreID = appRealm.objects(Genre.self).filter(NSPredicate(format: "name = %@", "Hip-Hop"))[0].id
+                newSong2.musicServiceID = appRealm.objects(MusicService.self).filter(NSPredicate(format: "name = %@", "Tidal"))[0].id
+                userRealm.create(Song.self, value: newSong2, update: false)
+                
+                // Commit transaction
+                try userRealm.commitWrite()
+            } catch let error {
+                log.error(error)
+            }
+        }
+        timer!.resume()
+    }
+    
+    func stopTimer() {
+        timer?.cancel()
+        timer = nil
     }
 }
 

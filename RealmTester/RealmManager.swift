@@ -16,9 +16,11 @@ final class RealmManager {
     static let shared = RealmManager()
     
     // App's Realm instance
+    var appConfig: Realm.Configuration!
     var appRealm: Realm?
     
     // User's Realm instance
+    var userConfig: Realm.Configuration!
     var userRealm: Realm?
     
     private init() {
@@ -46,7 +48,7 @@ final class RealmManager {
 private extension RealmManager {
     func initializeAppRealm() {
         // Initialize app Realm schema
-        let appConfig = Realm.Configuration(
+        appConfig = Realm.Configuration(
             fileURL: URL(fileURLWithPath: RLMRealmPathForFile("app.realm"), isDirectory: false),
             schemaVersion: 0,
             migrationBlock: { migration, oldSchemaVersion in
@@ -65,7 +67,7 @@ private extension RealmManager {
 
     func initializeUserRealm() {
         // Initialize user Realm schema
-        let userConfig = Realm.Configuration(
+        userConfig = Realm.Configuration(
             fileURL: URL(fileURLWithPath: RLMRealmPathForFile("user.realm"), isDirectory: false),
             schemaVersion: 0,
             migrationBlock: { migration, oldSchemaVersion in
