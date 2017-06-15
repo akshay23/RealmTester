@@ -102,6 +102,10 @@ class DetailsViewController: UIViewController {
                 
                 hideKeyboard()
                 log.info("Updated song!")
+                
+                let alert = UIAlertController(title: "Updated", message: "Song was successfully updated", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                present(alert, animated: true, completion: nil)
             }
         } catch let error {
             log.error(error)

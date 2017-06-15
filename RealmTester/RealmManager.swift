@@ -26,8 +26,8 @@ final class RealmManager {
     private init() {
         initializeAppRealm()
         initializeUserRealm()
-        //populateGenres()
-        //populateMusicServices()
+        populateGenres()
+        populateMusicServices()
     }
     
     func printRealmPaths() {
@@ -52,7 +52,6 @@ private extension RealmManager {
             fileURL: URL(fileURLWithPath: RLMRealmPathForFile("app.realm"), isDirectory: false),
             schemaVersion: 0,
             migrationBlock: { migration, oldSchemaVersion in
-                //if (oldSchemaVersion < 1) { }
             },
             objectTypes: [Genre.self, MusicService.self]
         )
@@ -69,9 +68,18 @@ private extension RealmManager {
         // Initialize user Realm schema
         userConfig = Realm.Configuration(
             fileURL: URL(fileURLWithPath: RLMRealmPathForFile("user.realm"), isDirectory: false),
-            schemaVersion: 0,
+            schemaVersion: 1,
             migrationBlock: { migration, oldSchemaVersion in
-                //if (oldSchemaVersion < 1) { }
+                // The enumerateObjects:block: method iterates
+                // over every 'Song' object stored in the Realm file
+                migration.enumerateObjects(ofType: Song.className()) { oldObject, newObject in
+                    // Add the lyrics property
+                    if (oldSchemaVersion < 1) {
+                        if let newO = newObject {
+                            newO["lyrics"] = ""
+                        }
+                    }
+                }
             },
             objectTypes: [Song.self, Topic.self, CarTopic.self, FoodTopic.self, MovieTopic.self, AnyTopic.self]
         )
@@ -85,17 +93,7 @@ private extension RealmManager {
     }
     
     func populateGenres() {
-        if let r = appRealm {
-            if r.objects(Genre.self).count != 0 {
-                do {
-                    try r.write {
-                        r.delete(r.objects(Genre.self))
-                    }
-                } catch let error as NSError {
-                    log.error(error)
-                }
-            }
-            
+        if let r = appRealm, r.objects(Genre.self).count == 0 {
             do {
                 try r.write {
                     let defaultGenres = ["Hip-Hop", "Rock", "Classical", "Pop", "Electronic", "Jazz"]
@@ -114,17 +112,7 @@ private extension RealmManager {
     }
     
     func populateMusicServices() {
-        if let r = appRealm {
-            if r.objects(MusicService.self).count != 0 {
-                do {
-                    try r.write {
-                        r.delete(r.objects(MusicService.self))
-                    }
-                } catch let error as NSError {
-                    log.error(error)
-                }
-            }
-            
+        if let r = appRealm, r.objects(MusicService.self).count == 0 {
             do {
                 try r.write {
                     let defaultServices = ["Spotify", "🍏 Music", "Sound⛅️", "Tidal", "Amazon Prime 🎶"]

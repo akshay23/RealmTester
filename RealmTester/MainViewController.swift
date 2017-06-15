@@ -79,7 +79,7 @@ private extension MainViewController {
     func startTimer() {
         let queue = DispatchQueue(label: "com.actionman.RealmTester.timer")
         timer = DispatchSource.makeTimerSource(queue: queue)
-        timer!.scheduleRepeating(deadline: .now() + 30, interval: .seconds(30))
+        timer!.scheduleRepeating(deadline: .now() + 45, interval: .seconds(45))
         timer!.setEventHandler {
             do {
                 // Init Realms in current thread
